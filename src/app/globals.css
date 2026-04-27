@@ -12,8 +12,8 @@
     --line: 215 14% 24%;
     --accent: 29 100% 53%;
     --olive: 210 10% 42%;
-    --font-display: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-display-fallback: "Helvetica Neue", Arial, sans-serif;
+    --font-body-fallback: "Helvetica Neue", Arial, sans-serif;
   }
 
   * {
@@ -26,6 +26,17 @@
 
   body {
     @apply bg-background font-body text-text antialiased;
+    line-height: 1.65;
+    font-feature-settings: "ss01", "kern";
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background-image:
       radial-gradient(circle at 14% 18%, rgba(255, 145, 24, 0.16), transparent 24%),
       radial-gradient(circle at 82% 8%, rgba(255, 94, 24, 0.12), transparent 21%),
@@ -45,7 +56,6 @@
         transparent 1px,
         transparent 120px
       );
-    background-attachment: fixed;
   }
 
   a,
@@ -68,11 +78,11 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center border border-accent bg-accent px-5 py-3 text-[0.72rem] uppercase tracking-[0.2em] text-white hover:-translate-y-0.5 hover:border-[#ffbc2b] hover:bg-[#ff6a18];
+    @apply inline-flex min-h-[3.25rem] items-center justify-center border border-accent bg-accent px-5 py-3 text-[0.72rem] uppercase tracking-[0.2em] text-white hover:-translate-y-0.5 hover:border-[#ffbc2b] hover:bg-[#ff6a18];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center border border-line bg-transparent px-5 py-3 text-[0.72rem] uppercase tracking-[0.2em] text-text hover:-translate-y-0.5 hover:border-accent hover:text-accent;
+    @apply inline-flex min-h-[3.25rem] items-center justify-center border border-line bg-transparent px-5 py-3 text-[0.72rem] uppercase tracking-[0.2em] text-text hover:-translate-y-0.5 hover:border-accent hover:text-accent;
   }
 
   .image-frame {
@@ -120,5 +130,27 @@
 
   .display-title {
     @apply font-display font-medium uppercase tracking-[-0.03em] text-text;
+  }
+
+  .mobile-stack {
+    @apply grid gap-6 md:gap-8;
+  }
+
+  .form-field {
+    @apply min-h-[2.75rem] border border-line bg-background px-4 py-3 text-text outline-none transition;
+    @apply focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-0;
+  }
+
+  .form-field::placeholder {
+    color: hsl(var(--muted) / 0.6);
+  }
+
+  .form-field:user-invalid {
+    @apply border-accent;
+  }
+
+  .skip-link {
+    @apply absolute left-4 top-4 z-[100] -translate-y-32 rounded-sm border border-accent bg-background px-4 py-2 text-[0.72rem] uppercase tracking-[0.2em] text-accent transition;
+    @apply focus-visible:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent;
   }
 }

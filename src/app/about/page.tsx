@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { InquiryCta } from "@/components/sections/inquiry-cta";
 import { PageIntro } from "@/components/sections/page-intro";
 import { buildMetadata } from "@/lib/seo";
@@ -19,18 +21,20 @@ export default function AboutPage() {
         aside="That means better pacing, better tonal control, stronger architectural respect, and a smoother client experience from first inquiry through delivery."
       />
 
-      <section className="mx-auto grid max-w-7xl gap-12 px-5 py-8 md:grid-cols-[1fr_1fr] md:px-8 md:py-14">
+      <section className="mx-auto grid max-w-7xl gap-6 px-5 py-8 md:grid-cols-[1fr_1fr] md:gap-10 md:px-8 md:py-14">
         <div className="page-panel p-4 md:p-5">
-          <div className="image-frame min-h-[30rem]">
-          <img
-            src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=80"
-            alt="Refined living room"
-            className="h-full w-full object-cover"
-          />
+          <div className="image-frame aspect-[4/5] min-h-[20rem] sm:aspect-[5/4] md:min-h-[30rem]">
+            <Image
+              src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=80"
+              alt="Refined living room"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
             <div className="image-scrim opacity-55" />
           </div>
         </div>
-        <div className="page-panel space-y-8 p-6 md:p-8">
+        <div className="page-panel space-y-7 p-5 md:space-y-8 md:p-8">
           <div>
             <p className="eyebrow">Philosophy</p>
             <p className="mt-4 text-base leading-8 text-muted">

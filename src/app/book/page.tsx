@@ -8,6 +8,9 @@ export const metadata = buildMetadata({
   path: "/book"
 });
 
+const formEndpoint =
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? "https://formspree.io/f/your-form-id";
+
 export default function BookPage() {
   return (
     <>
@@ -19,49 +22,103 @@ export default function BookPage() {
 
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-8 md:grid-cols-[1.15fr_0.85fr] md:px-8 md:py-14">
         <div className="border border-line bg-surface p-6 shadow-soft md:p-8">
-          <form className="grid gap-5">
+          <form
+            className="grid gap-5"
+            action={formEndpoint}
+            method="POST"
+            acceptCharset="UTF-8"
+          >
+            <input type="hidden" name="_subject" value="New booking request — Go Virtuality" />
+            <input type="hidden" name="_source" value="govirtuality.com /book" />
+
             <div className="grid gap-5 md:grid-cols-2">
-              <label className="grid gap-2 text-sm">
-                <span>Agent or company</span>
-                <input className="border border-line bg-background px-4 py-3 outline-none" />
+              <label htmlFor="book-company" className="grid gap-2 text-sm">
+                <span>
+                  Agent or company <span aria-hidden="true">*</span>
+                </span>
+                <input
+                  id="book-company"
+                  name="company"
+                  type="text"
+                  required
+                  autoComplete="organization"
+                  className="form-field"
+                />
               </label>
-              <label className="grid gap-2 text-sm">
-                <span>Best email</span>
-                <input className="border border-line bg-background px-4 py-3 outline-none" />
+              <label htmlFor="book-email" className="grid gap-2 text-sm">
+                <span>
+                  Best email <span aria-hidden="true">*</span>
+                </span>
+                <input
+                  id="book-email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  inputMode="email"
+                  className="form-field"
+                />
               </label>
             </div>
+
             <div className="grid gap-5 md:grid-cols-2">
-              <label className="grid gap-2 text-sm">
-                <span>Property address</span>
-                <input className="border border-line bg-background px-4 py-3 outline-none" />
+              <label htmlFor="book-address" className="grid gap-2 text-sm">
+                <span>
+                  Property address <span aria-hidden="true">*</span>
+                </span>
+                <input
+                  id="book-address"
+                  name="property_address"
+                  type="text"
+                  required
+                  autoComplete="street-address"
+                  className="form-field"
+                />
               </label>
-              <label className="grid gap-2 text-sm">
+              <label htmlFor="book-date" className="grid gap-2 text-sm">
                 <span>Preferred date</span>
-                <input type="date" className="border border-line bg-background px-4 py-3 outline-none" />
+                <input
+                  id="book-date"
+                  name="preferred_date"
+                  type="date"
+                  className="form-field"
+                />
               </label>
             </div>
-            <label className="grid gap-2 text-sm">
-              <span>Services requested</span>
+
+            <fieldset className="grid gap-2">
+              <legend className="text-sm">Services requested</legend>
               <div className="grid gap-3 md:grid-cols-2">
                 {services.map((service) => (
                   <label
                     key={service.slug}
-                    className="flex items-center gap-3 border border-line bg-background px-4 py-3 text-sm"
+                    htmlFor={`book-service-${service.slug}`}
+                    className="flex min-h-[2.75rem] items-center gap-3 border border-line bg-background px-4 py-3 text-sm transition focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/60"
                   >
-                    <input type="checkbox" />
+                    <input
+                      id={`book-service-${service.slug}`}
+                      name="services"
+                      value={service.slug}
+                      type="checkbox"
+                      className="h-4 w-4 accent-accent"
+                    />
                     <span>{service.name}</span>
                   </label>
                 ))}
               </div>
-            </label>
-            <label className="grid gap-2 text-sm">
+            </fieldset>
+
+            <label htmlFor="book-notes" className="grid gap-2 text-sm">
               <span>Notes</span>
               <textarea
+                id="book-notes"
+                name="notes"
                 rows={6}
-                className="border border-line bg-background px-4 py-3 outline-none"
+                className="form-field"
                 placeholder="Square footage, waterfront details, social cut needs, staging needs, or anything else useful."
               />
             </label>
+
             <button type="submit" className="btn-primary w-full md:w-fit">
               Submit Booking Request
             </button>

@@ -20,8 +20,18 @@ const config: Config = {
         olive: "hsl(var(--olive) / <alpha-value>)"
       },
       fontFamily: {
-        display: ["var(--font-display)"],
-        body: ["var(--font-body)"]
+        display: [
+          "var(--font-display)",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ],
+        body: [
+          "var(--font-body)",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ]
       },
       boxShadow: {
         soft: "0 24px 80px rgba(50, 39, 24, 0.12)"

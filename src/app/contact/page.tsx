@@ -16,6 +16,17 @@ const inquiryTopics = [
   "Commercial photography"
 ] as const;
 
+const serviceOptions = [
+  { value: "photography", label: "Photography" },
+  { value: "drone", label: "Drone" },
+  { value: "video", label: "Video" },
+  { value: "virtual-staging", label: "Virtual Staging" },
+  { value: "commercial", label: "Commercial" }
+] as const;
+
+const formEndpoint =
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? "https://formspree.io/f/your-form-id";
+
 export default function ContactPage() {
   return (
     <>
@@ -50,41 +61,87 @@ export default function ContactPage() {
         </div>
 
         <div className="border border-line bg-surface p-6 shadow-soft md:p-8">
-          <form className="grid gap-5">
+          <form
+            className="grid gap-5"
+            action={formEndpoint}
+            method="POST"
+            acceptCharset="UTF-8"
+          >
+            <input type="hidden" name="_subject" value="New inquiry — Go Virtuality" />
+            <input type="hidden" name="_source" value="govirtuality.com /contact" />
+
             <div className="grid gap-5 md:grid-cols-2">
-              <label className="grid gap-2 text-sm">
-                <span>Name</span>
-                <input className="border border-line bg-background px-4 py-3 outline-none" />
+              <label htmlFor="contact-name" className="grid gap-2 text-sm">
+                <span>
+                  Name <span aria-hidden="true">*</span>
+                </span>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  required
+                  autoComplete="name"
+                  className="form-field"
+                />
               </label>
-              <label className="grid gap-2 text-sm">
-                <span>Email</span>
-                <input className="border border-line bg-background px-4 py-3 outline-none" />
+              <label htmlFor="contact-email" className="grid gap-2 text-sm">
+                <span>
+                  Email <span aria-hidden="true">*</span>
+                </span>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  inputMode="email"
+                  className="form-field"
+                />
               </label>
             </div>
+
             <div className="grid gap-5 md:grid-cols-2">
-              <label className="grid gap-2 text-sm">
+              <label htmlFor="contact-location" className="grid gap-2 text-sm">
                 <span>Property location</span>
-                <input className="border border-line bg-background px-4 py-3 outline-none" />
+                <input
+                  id="contact-location"
+                  name="property_location"
+                  type="text"
+                  autoComplete="address-level2"
+                  className="form-field"
+                />
               </label>
-              <label className="grid gap-2 text-sm">
+              <label htmlFor="contact-service" className="grid gap-2 text-sm">
                 <span>Desired service</span>
-                <select className="border border-line bg-background px-4 py-3 outline-none">
-                  <option>Photography</option>
-                  <option>Drone</option>
-                  <option>Video</option>
-                  <option>Virtual Staging</option>
-                  <option>Commercial</option>
+                <select
+                  id="contact-service"
+                  name="desired_service"
+                  className="form-field"
+                  defaultValue={serviceOptions[0].value}
+                >
+                  {serviceOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
               </label>
             </div>
-            <label className="grid gap-2 text-sm">
-              <span>Project details</span>
+
+            <label htmlFor="contact-details" className="grid gap-2 text-sm">
+              <span>
+                Project details <span aria-hidden="true">*</span>
+              </span>
               <textarea
+                id="contact-details"
+                name="details"
+                required
                 rows={6}
-                className="border border-line bg-background px-4 py-3 outline-none"
+                className="form-field"
                 placeholder="Property type, timeline, package idea, add-ons, or anything else we should know."
               />
             </label>
+
             <button type="submit" className="btn-primary w-full md:w-fit">
               Send Inquiry
             </button>

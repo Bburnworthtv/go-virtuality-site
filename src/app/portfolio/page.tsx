@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { InquiryCta } from "@/components/sections/inquiry-cta";
@@ -23,15 +24,17 @@ export default function PortfolioPage() {
       />
 
       <section className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-12">
-        <div className="grid gap-8 lg:gap-10">
+        <div className="grid gap-6 lg:gap-8">
           {portfolioProjects.map((project) => (
             <Link key={project.slug} href={`/portfolio/${project.slug}`} className="group">
-              <article className="page-panel grid gap-5 p-4 md:grid-cols-[1.1fr_0.9fr] md:items-end md:gap-8 md:p-5">
-                <div className="image-frame aspect-[4/3] md:aspect-[5/4]">
-                  <img
+              <article className="page-panel grid gap-5 p-4 md:grid-cols-[1.05fr_0.95fr] md:items-end md:gap-8 md:p-5">
+                <div className="image-frame aspect-[4/3] sm:aspect-[5/4] md:aspect-[5/4]">
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition duration-700 group-hover:scale-[1.04]"
                   />
                   <div className="image-scrim opacity-70" />
                 </div>
@@ -47,7 +50,7 @@ export default function PortfolioPage() {
                       {project.summary}
                     </p>
                   </div>
-                  <div className="flex items-center justify-between gap-4 border-t border-line pt-4">
+                  <div className="flex flex-col gap-3 border-t border-line pt-4 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-[0.68rem] uppercase tracking-[0.16em] text-muted">
                       {project.location}
                     </p>

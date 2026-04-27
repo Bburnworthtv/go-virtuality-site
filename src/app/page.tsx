@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { InquiryCta } from "@/components/sections/inquiry-cta";
@@ -23,26 +24,24 @@ export default function HomePage() {
     <>
       <section className="relative overflow-hidden border-b border-line">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80"
-            alt="Luxury residence interior"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(102deg,rgba(4,6,10,0.96),rgba(4,6,10,0.78),rgba(4,6,10,0.28))]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(255,145,24,0.22),transparent_26%),radial-gradient(circle_at_76%_18%,rgba(105,118,138,0.12),transparent_22%)]" />
+          <div className="absolute inset-y-0 left-0 w-full bg-[radial-gradient(circle_at_16%_18%,rgba(255,145,24,0.12),transparent_24%),linear-gradient(140deg,rgba(7,9,13,0.98),rgba(4,6,10,0.96)_42%,rgba(7,9,13,0.9))]" />
+          <div className="absolute inset-y-0 right-0 hidden w-[56%] bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))] lg:block" />
         </div>
 
-        <div className="relative mx-auto grid min-h-[calc(100svh-92px)] max-w-7xl items-end gap-10 px-5 pb-10 pt-20 md:min-h-[calc(100svh-108px)] md:px-8 md:pb-14 md:pt-24 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div className="max-w-2xl text-surface">
-            <img
+        <div className="relative mx-auto grid min-h-[calc(78svh-72px)] max-w-7xl gap-8 px-5 pb-8 pt-10 sm:min-h-[calc(84svh-72px)] md:min-h-[calc(100svh-108px)] md:items-center md:gap-10 md:px-8 md:pb-14 md:pt-20 lg:grid-cols-[0.82fr_1.18fr]">
+          <div className="max-w-2xl py-2">
+            <Image
               src="/brand/go-virtuality-logo-v2.png"
               alt="Go Virtuality"
-              className="h-24 w-auto object-contain sm:h-28 md:h-32"
+              width={420}
+              height={128}
+              priority
+              className="h-20 w-auto object-contain sm:h-24 md:h-32"
             />
-            <h1 className="mt-8 max-w-2xl font-display text-4xl font-medium uppercase leading-[0.94] tracking-[-0.04em] text-surface md:text-6xl">
+            <h1 className="mt-6 max-w-xl font-display text-[2.05rem] font-medium uppercase leading-[0.96] tracking-[-0.04em] text-white sm:text-5xl md:mt-8 md:max-w-2xl md:text-6xl">
               Listing media that looks sharp and sells the space clearly.
             </h1>
-            <p className="mt-5 max-w-md text-sm leading-7 text-surface/90 md:text-base">
+            <p className="mt-5 max-w-md text-sm leading-7 text-white/78 md:text-base">
               Photography, drone, video, and staging built to give every property a stronger first impression.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -51,27 +50,39 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/portfolio"
-                className="btn-secondary border-surface/40 text-surface hover:border-surface hover:text-surface"
+                className="btn-secondary border-white/20 text-white hover:border-white hover:text-white"
               >
                 View Portfolio
               </Link>
             </div>
           </div>
-          <div className="hidden lg:flex lg:justify-end">
-            <div className="dark-panel relative w-full max-w-[34rem] overflow-hidden p-10">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#ff9b1f] to-transparent" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,145,24,0.16),transparent_30%)]" />
-              <img
-                src="/brand/go-virtuality-logo-v2.png"
-                alt="Go Virtuality logo"
-                className="mx-auto h-auto w-full max-w-[28rem] object-contain"
-              />
+          <div className="lg:flex lg:justify-end">
+            <div className="page-panel relative overflow-hidden p-3 sm:p-4 md:p-5">
+              <div className="image-frame aspect-[5/4] min-h-[16rem] sm:aspect-[4/3] md:min-h-[24rem] lg:min-h-[30rem]">
+                <Image
+                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80"
+                  alt="Luxury residence interior"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 56vw, (min-width: 640px) 100vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,6,10,0.12),rgba(4,6,10,0.38)_46%,rgba(4,6,10,0.9)_100%)]" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white sm:p-5">
+                  <p className="text-[0.68rem] uppercase tracking-[0.18em] text-white/72">
+                    Residential Photography
+                  </p>
+                  <p className="mt-2 max-w-sm font-display text-xl uppercase leading-tight tracking-[-0.02em] sm:text-2xl">
+                    Bright interiors, clean lines, and a steadier first impression.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-4 px-5 py-6 md:grid-cols-3 md:px-8 md:py-8">
+      <section className="mx-auto grid max-w-7xl gap-3 px-5 py-6 md:grid-cols-3 md:gap-4 md:px-8 md:py-8">
         {[
           "Residential photography",
           "FAA-certified drone",
@@ -86,14 +97,14 @@ export default function HomePage() {
         ))}
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[0.82fr_1.18fr] md:px-8 md:py-20">
+      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-[0.82fr_1.18fr] md:gap-10 md:px-8 md:py-20">
         <div>
           <p className="eyebrow">Services</p>
           <h2 className="display-title mt-3 max-w-sm text-3xl leading-tight md:text-4xl">
             Built for listings that need a stronger presence.
           </h2>
         </div>
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
           {featuredServices.map((service) => (
             <Link
               key={service.slug}
@@ -116,7 +127,7 @@ export default function HomePage() {
       </section>
 
       <section className="bg-surface">
-        <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
+        <div className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-20">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="eyebrow">Featured Work</p>
@@ -136,11 +147,13 @@ export default function HomePage() {
                 href={`/portfolio/${project.slug}`}
                 className={`group ${index === 0 ? "lg:row-span-2" : ""}`}
               >
-                <div className="image-frame h-full min-h-[16rem] md:min-h-[18rem]">
-                  <img
+                <div className="image-frame aspect-[4/3] h-full min-h-[15rem] md:min-h-[18rem]">
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                    fill
+                    sizes="(min-width: 1024px) 36vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition duration-700 group-hover:scale-[1.04]"
                   />
                   <div className="image-scrim" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-surface">
@@ -159,7 +172,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[0.9fr_1.1fr] md:px-8 md:py-20">
+      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-[0.9fr_1.1fr] md:gap-10 md:px-8 md:py-20">
         <div className="space-y-5">
           <p className="eyebrow">Pricing</p>
           <h2 className="display-title text-3xl leading-tight md:text-4xl">
@@ -179,7 +192,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {packages.map((pkg) => (
             <div key={pkg.name} className="page-panel px-5 py-5">
               <p className="text-[0.68rem] uppercase tracking-[0.18em] text-accent">
@@ -195,35 +208,39 @@ export default function HomePage() {
       </section>
 
       <section className="bg-[#070707] text-surface">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 md:grid-cols-[1.1fr_0.9fr] md:px-8 md:py-18">
-          <div>
-            <p className="eyebrow !text-surface/70">FAA certified</p>
-            <h2 className="mt-3 max-w-xl font-display text-3xl font-medium uppercase leading-tight tracking-[-0.03em] md:text-4xl">
-              Drone coverage that stays useful.
-            </h2>
-          </div>
-            <div className="space-y-4 text-sm leading-6 text-surface/88">
-            <p>
-              Waterfront, acreage, access, and neighborhood context all read better from the air when the coverage stays simple.
-            </p>
-            <Link
-              href="/services/aerial-drone"
-              className="btn-secondary border-surface/30 text-surface hover:border-surface hover:text-surface"
-            >
-              View Drone Service
-            </Link>
+        <div className="mx-auto grid max-w-7xl gap-6 px-5 py-12 md:grid-cols-[1.1fr_0.9fr] md:gap-8 md:px-8 md:py-18">
+          <div className="page-panel md:col-span-2">
+            <div className="grid gap-6 px-5 py-6 md:grid-cols-[1.1fr_0.9fr] md:items-end md:px-8 md:py-8">
+              <div>
+                <p className="eyebrow !text-accent">FAA certified</p>
+                <h2 className="mt-3 max-w-lg font-display text-[2rem] font-medium uppercase leading-tight tracking-[-0.03em] text-white md:max-w-xl md:text-4xl">
+                  Aerial coverage that adds real context.
+                </h2>
+              </div>
+              <div className="space-y-4 text-sm leading-6 text-white">
+                <p className="text-white/90">
+                  Waterfront, lot lines, approach, and surrounding context all make more sense from the air when the coverage is clean and intentional.
+                </p>
+                <Link
+                  href="/services/aerial-drone"
+                  className="btn-primary"
+                >
+                  Explore Drone Coverage
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-14 md:grid-cols-[0.78fr_1.22fr] md:px-8 md:py-20">
+      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-[0.78fr_1.22fr] md:px-8 md:py-20">
         <div>
           <p className="eyebrow">Process</p>
           <h2 className="display-title mt-3 text-3xl leading-tight md:text-4xl">
             Simple from booking to delivery.
           </h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {[
             ["01", "Plan", "We confirm scope, timing, and what matters most before the shoot."],
             ["02", "Shoot", "The property is captured with a clean, consistent approach."],
@@ -241,7 +258,7 @@ export default function HomePage() {
       </section>
 
       <section className="bg-surface">
-        <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
+        <div className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-20">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="eyebrow">Client Notes</p>

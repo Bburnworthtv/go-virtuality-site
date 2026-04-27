@@ -20,12 +20,12 @@ export function InquiryCta({
   secondaryLabel = "Request Pricing"
 }: InquiryCtaProps) {
   return (
-    <section className="px-5 py-14 md:px-8 md:py-20">
-      <div className="page-panel mx-auto max-w-7xl overflow-hidden px-6 py-8 md:px-10 md:py-10">
+    <section className="px-5 py-12 md:px-8 md:py-20">
+      <div className="page-panel mx-auto max-w-7xl overflow-hidden px-5 py-7 md:px-10 md:py-10">
         <div className="grid gap-6 md:grid-cols-[1.25fr_0.75fr] md:items-end">
           <div className="max-w-2xl">
             <p className="eyebrow">{eyebrow}</p>
-            <h2 className="display-title mt-3 text-3xl leading-tight md:text-4xl">
+            <h2 className="display-title mt-3 text-[2rem] leading-tight md:text-4xl">
               {title}
             </h2>
             <p className="shell-copy mt-3 max-w-lg">{body}</p>

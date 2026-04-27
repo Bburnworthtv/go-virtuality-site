@@ -21,11 +21,11 @@ export default function PricingPage() {
       />
 
       <section className="mx-auto max-w-7xl px-5 py-8 md:px-8">
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {packages.map((pkg) => (
-            <article key={pkg.name} className="page-panel px-6 py-8">
+            <article key={pkg.name} className="page-panel px-5 py-6 md:px-6 md:py-8">
               <p className="text-xs uppercase tracking-[0.28em] text-accent">{pkg.name}</p>
-              <h2 className="mt-4 font-display text-5xl tracking-editorial">{pkg.price}</h2>
+              <h2 className="mt-4 font-display text-4xl tracking-editorial md:text-5xl">{pkg.price}</h2>
               <p className="mt-4 text-sm leading-7 text-muted">{pkg.description}</p>
               <ul className="mt-8 space-y-4 text-sm leading-7 text-text/84">
                 {pkg.includes.map((item) => (
@@ -40,10 +40,10 @@ export default function PricingPage() {
       </section>
 
       <section className="page-band mt-10">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-[0.8fr_1.2fr] md:px-8 md:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-[0.8fr_1.2fr] md:gap-10 md:px-8 md:py-20">
           <div>
             <p className="eyebrow">Virtual Staging</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight tracking-editorial md:text-5xl">
+            <h2 className="mt-4 font-display text-[2rem] leading-tight tracking-editorial md:text-5xl">
               Fast, believable staging for vacant spaces that need instant warmth.
             </h2>
           </div>
@@ -61,10 +61,10 @@ export default function PricingPage() {
       </section>
 
       <section className="page-band">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-[0.9fr_1.1fr] md:px-8 md:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-[0.9fr_1.1fr] md:gap-10 md:px-8 md:py-20">
           <div>
             <p className="eyebrow">Add-ons</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight tracking-editorial md:text-5xl">
+            <h2 className="mt-4 font-display text-[2rem] leading-tight tracking-editorial md:text-5xl">
               Build the scope around the property instead of forcing every listing into the same package.
             </h2>
           </div>
@@ -78,11 +78,11 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
+      <section className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-20">
         <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="eyebrow">FAQ</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight tracking-editorial md:text-5xl">
+            <h2 className="mt-4 font-display text-[2rem] leading-tight tracking-editorial md:text-5xl">
               The pricing questions that matter before you book.
             </h2>
           </div>

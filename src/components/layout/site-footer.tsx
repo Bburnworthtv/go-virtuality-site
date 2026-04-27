@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { primaryNav, site } from "@/content/site";
@@ -7,9 +8,11 @@ export function SiteFooter() {
     <footer className="border-t border-line bg-surfaceStrong text-text">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-14 md:grid-cols-[1.4fr_0.8fr_0.8fr] md:px-8">
         <div className="max-w-xl">
-          <img
+          <Image
             src="/brand/go-virtuality-logo-v2.png"
             alt={site.name}
+            width={260}
+            height={80}
             className="h-16 w-auto object-contain md:h-20"
           />
           <h2 className="display-title mt-5 text-2xl leading-tight md:text-3xl">

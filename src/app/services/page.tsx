@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { InquiryCta } from "@/components/sections/inquiry-cta";
@@ -28,17 +29,19 @@ export default function ServicesPage() {
       />
 
       <section className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-12">
-        <div className="grid gap-x-10 gap-y-14 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
           {services.map((service, index) => (
             <Link key={service.slug} href={`/services/${service.slug}`} className="group">
-              <div className="page-panel grid gap-6 p-4 md:grid-cols-[0.9fr_1.1fr] md:p-5">
+              <div className="page-panel grid gap-5 p-4 md:grid-cols-[0.92fr_1.08fr] md:gap-6 md:p-5">
                 <div
-                  className={`image-frame aspect-[4/3] min-h-[16rem] ${index % 2 ? "md:order-2" : ""}`}
+                  className={`image-frame aspect-[4/3] min-h-[14rem] ${index % 2 ? "md:order-2" : ""}`}
                 >
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.name}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                    fill
+                    sizes="(min-width: 768px) 45vw, 100vw"
+                    className="object-cover transition duration-700 group-hover:scale-[1.04]"
                   />
                   <div className="image-scrim opacity-60" />
                 </div>
@@ -47,7 +50,7 @@ export default function ServicesPage() {
                     <p className="text-xs uppercase tracking-[0.28em] text-accent">
                       {service.shortName}
                     </p>
-                    <h2 className="mt-3 font-display text-3xl tracking-editorial transition group-hover:text-accent">
+                    <h2 className="mt-3 font-display text-[1.8rem] tracking-editorial transition group-hover:text-accent md:text-3xl">
                       {service.name}
                     </h2>
                     <p className="mt-4 text-sm leading-7 text-muted">{service.summary}</p>
@@ -62,8 +65,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="page-band mt-10">
-        <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-18">
+      <section className="page-band mt-8 md:mt-10">
+        <div className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-18">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="eyebrow">Virtual Tours</p>
@@ -81,11 +84,13 @@ export default function ServicesPage() {
             {virtualTourExamples.map((project) => (
               <Link key={project.slug} href={`/portfolio/${project.slug}`} className="group">
                 <article className="page-panel overflow-hidden p-4 md:p-5">
-                  <div className="image-frame aspect-[16/10]">
-                    <img
+                  <div className="image-frame aspect-[4/3] sm:aspect-[16/10]">
+                    <Image
                       src={project.image}
                       alt={project.title}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="object-cover transition duration-700 group-hover:scale-[1.04]"
                     />
                     <div className="image-scrim" />
                     <div className="absolute bottom-0 left-0 right-0 p-5 text-surface">
@@ -98,7 +103,7 @@ export default function ServicesPage() {
                       <p className="mt-1 text-sm text-surface/92">{project.location}</p>
                     </div>
                   </div>
-                  <div className="mt-5 flex items-end justify-between gap-4">
+                  <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                     <p className="max-w-md text-sm leading-6 text-muted">{project.summary}</p>
                     <span className="shrink-0 text-[0.72rem] uppercase tracking-[0.18em] text-text/88 transition group-hover:text-accent">
                       View example
