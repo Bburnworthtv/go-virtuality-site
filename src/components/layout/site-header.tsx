@@ -3,39 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { primaryNav, site } from "@/content/site";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const panelId = useId();
-  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
-
-  useEffect(() => {
-    if (!open) return;
-
-    function onKey(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
-    }
-    function onPointer(event: MouseEvent) {
-      if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("mousedown", onPointer);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("mousedown", onPointer);
-    };
-  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-background/90 backdrop-blur">
@@ -65,40 +43,35 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        <div ref={panelRef} className="relative md:hidden">
-          <button
-            type="button"
-            aria-expanded={open}
-            aria-controls={panelId}
-            onClick={() => setOpen((value) => !value)}
-            className="min-h-[2.75rem] rounded-full border border-line bg-surface px-4 py-2 text-[0.72rem] uppercase tracking-[0.18em] text-text transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-          >
-            {open ? "Close" : "Menu"}
-          </button>
-
-          {open ? (
-            <div
-              id={panelId}
-              className="absolute right-0 mt-3 min-w-56 border border-line bg-surface p-3 shadow-soft"
-            >
-              <nav aria-label="Mobile primary" className="flex flex-col gap-2">
-                {primaryNav.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded px-3 py-2 text-[0.78rem] uppercase tracking-[0.16em] text-text transition hover:bg-background"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <Link href="/book" className="btn-primary mt-2 text-center">
-                  {site.ctaLabel}
-                </Link>
-              </nav>
-            </div>
-          ) : null}
-        </div>
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          aria-haspopup="menu"
+          className="min-h-[2.75rem] rounded-full border border-line bg-surface px-4 py-2 text-[0.72rem] uppercase tracking-[0.18em] text-text transition md:hidden"
+        >
+          {open ? "Close" : "Menu"}
+        </button>
       </div>
+
+      {open ? (
+        <div className="border-t border-line/70 bg-background/98 md:hidden">
+          <nav aria-label="Mobile primary" className="mx-auto flex max-w-7xl flex-col px-4 py-3">
+            {primaryNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-xl px-3 py-3 text-[0.8rem] uppercase tracking-[0.16em] text-text transition hover:bg-surface"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link href="/book" className="btn-primary mt-3 text-center">
+              {site.ctaLabel}
+            </Link>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }
